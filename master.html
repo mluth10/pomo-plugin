@@ -1,28 +1,46 @@
-<h3 style="font:Courier New;">
-    <div id="pomodoro-timer"></div>
-
-    <body style="background-color:pink;">
-
-        <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!" type="text" id="pomodoro-clock-task" <div id="pomodoro-container">
+<html lang="en">
+<head>
+<style>
+    body {background-image:linear-gradient(to bottom right, #9796f0, #fbc7d4); font-family: 'Georgia';}
+    h3 {color:rgb(24, 24, 24); font-family: 'Georgia';}
+    p {color: rgb(226, 226, 226); font-family: 'Georgia';}
+    label {color:rgb(24, 24, 24); font-family: 'Georgia';}
+    span {color:rgb(24, 24, 24); font-family: 'Georgia';}
+</style>
+</head>
+<body>
+    <div id="pomodoro-container">
         <div id="pomodoro-clock">
+            <h3>
+            <div id="pomodoro-timer"></div>
+            </h3>
 
-            <div> <br>
-                <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!..." />
-            </div>
+            <p>
+                <div>
+                <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!"/>
+                </div>
+                <div>
+                <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!" />
+                </div>
+            </p>
+
             <div id="pomodoro-clock-actions"> <br>
                 <button id="pomodoro-start">Start</button>
                 <button id="pomodoro-pause">Pause</button>
                 <button id="pomodoro-stop">Stop</button>
-                <button id="pomodoro-day">Done Fo Today!</button>
+                <button id="pomodoro-day">All Done!</button>
             </div>
+
             <!-- new -->
             <div id="pomodoro-clock-title">
                 <br>
                 <span>
-             Changes made here will reflect at the start of the next homework /
-             break session
-           </span>
+            Changes made here will reflect at the start of the next homework /
+            break session
+                </span>
             </div>
+
+            <p>
             <div id="pomodoro-clock-actions1">
                 <div class="pomodoro-input">
                     <br>
@@ -35,13 +53,19 @@
                     <input name="input-break-time" id="input-break-time" type="number" />
                 </div>
             </div>
+            </p>
+
             <div id="pomodoro-info">
-                <h2>Work I've Done </h2>
+                <h3>Work I've Done </h3>
+                <p>
                 <ul id="pomodoro-sessions">
                 </ul>
+                </p>
             </div>
         </div>
+    </div>         
         <div id="chartContainer" style="height:300px; width: 100%"></div>
             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    </body>
-</h3>
+
+</body>
+</html>
