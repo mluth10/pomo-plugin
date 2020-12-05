@@ -27,6 +27,8 @@ let currentTimeLeftInSession = 1500
 // in seconds = 5 mins;
 let breakSessionDuration = 300
 
+let type = 'Work'
+
 const toggleClock = reset => {
     if (reset) {
         // STOP THE TIMER
@@ -42,11 +44,30 @@ const toggleClock = reset => {
         clockTimer = setInterval(() => {
             // decrease time left / increase time spent
             currentTimeLeftInSession--
-            displayCurrentTimeLeftInSession()
+            stepDown()
             }, 1000)
         }
     }
 }
+
+const stepDown = () => {
+    if (currentTimeLeftInSession > 0) {
+      // decrease time left / increase time spent
+      currentTimeLeftInSession--
+    } else if (currentTimeLeftInSession === 0) {
+      // Timer is over -> if work switch to break, viceversa
+      if (type === 'Work') {
+        currentTimeLeftInSession = breakSessionDuration
+        displaySessionLog('Work')
+        type = 'Break'
+      } else {
+        currentTimeLeftInSession = workSessionDuration
+        type = 'Work'
+        displaySessionLog('Break')
+      }
+    }
+    displayCurrentTimeLeftInSession()
+  }
 
 const displayCurrentTimeLeftInSession = () => {
     const secondsLeft = currentTimeLeftInSession
