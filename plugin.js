@@ -2,6 +2,7 @@ const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
 const pauseButton = document.querySelector('#pomodoro-pause')
 const stopButton = document.querySelector('#pomodoro-stop')
+const dayButton = document.querySelector('#pomodoro-day')
 
 
 // START
@@ -19,6 +20,65 @@ stopButton.addEventListener('click', () => {
     toggleClock(true)
 })
 
+dayButton.addEventListener('click', () => {
+    week[dayIdx] = timeTotalDay
+    dayIdx += 1
+
+    const changeIdx = (dayIdx) => {
+        if (dayIdx === 7) {
+            dayIdx = 0 
+        }
+    }
+    changeIdx(dayIdx)
+    toggleClock(true)
+
+    window.onload = function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            week : getWeek(),
+        
+            animationEnabled: true,
+            theme: "light2",
+            title:{text: "Time Spent Over the Last Week"},
+            axisY:{includeZero: true},
+            legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
+            data: [{
+                type: "line",
+                showInLegend: true,
+                name: "Daily Time",
+                markerType: "square",
+                color: "#F08080",
+                dataPoints: [
+                    {x: 0, y: week[0]},
+                    {x: 1, y: week[1]},
+                    {x: 2, y: week[2]},
+                    {x: 3, y: week[3]},
+                    {x: 4, y: week[4]},
+                    {x: 5, y: week[5]},
+                    {x: 6, y: week[6]}
+                ]
+            },
+            {
+                type: "line",
+                showInLegend: true,
+                name: "Goal Daily Time",
+                lineDashType: "dash",
+                color: "#46B7FF",
+                dataPoints: [
+                    {x: 0, y: 125},
+                    {x: 1, y: 125},
+                    {x: 2, y: 125},
+                    {x: 3, y: 125},
+                    {x: 4, y: 125},
+                    {x: 5, y: 125},
+                    {x: 6, y: 125}
+                ]
+            }]
+        });
+        chart.render();
+        }
+})
+
 let type = 'Work'
 let isClockRunning = false
 
@@ -32,8 +92,19 @@ let breakSessionDuration = 300
 //keep track of seconds spent
 let timeSpentInCurrentSession = 0
 
+//keep track of total time spend
+let timeTotalDay = 0
+
+//array of total time per day in the past week
+let week = [0, 0, 0, 0, 0, 0, 0]
+let dayIdx = 0
+
 //label the entry box
 let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
+
+const getWeek = () => {
+    return week
+}
 
 const toggleClock = reset => {
     if (reset) {
@@ -55,6 +126,7 @@ const toggleClock = reset => {
         }
     }
 }
+
 
 const stepDown = () => {
     if (currentTimeLeftInSession > 0) {
@@ -95,6 +167,7 @@ const displaySessionLog = type => {
         sessionLabel = 'Break'
     }
     let elapsedTime = parseInt(timeSpentInCurrentSession / 60)
+    timeTotalDay += elapsedTime
     elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1'
 
     const text = document.createTextNode(`${sessionLabel} : ${elapsedTime} min`)
@@ -132,3 +205,4 @@ const stopClock = () => {
 
 
 pomodoroTimer.innerText = result
+
