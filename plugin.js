@@ -2,6 +2,7 @@ const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
 const pauseButton = document.querySelector('#pomodoro-pause')
 const stopButton = document.querySelector('#pomodoro-stop')
+const dayButton = document.querySelector('#pomodoro-day')
 
 
 // START
@@ -19,6 +20,12 @@ stopButton.addEventListener('click', () => {
     toggleClock(true)
 })
 
+dayButton.addEventListener('click', () => {
+    week[dayIdx] = timeTotalDay
+    dayIdx += 1
+    changeIdx(dayIdx)
+})
+
 let type = 'Work'
 let isClockRunning = false
 
@@ -31,6 +38,13 @@ let breakSessionDuration = 300
 
 //keep track of seconds spent
 let timeSpentInCurrentSession = 0
+
+//keep track of total time spend
+let timeTotalDay = 0
+
+//array of total time per day in the past week
+let week = [0, 0, 0, 0, 0, 0, 0]
+let dayIdx = 0
 
 //label the entry box
 let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
@@ -53,6 +67,12 @@ const toggleClock = reset => {
                 displayCurrentTimeLeftInSession()
             }, 1000)
         }
+    }
+}
+
+const changeIdx = (dayIdx) => {
+    if (dayIdx === 7) {
+        dayIdx = 0 
     }
 }
 
@@ -95,6 +115,7 @@ const displaySessionLog = type => {
         sessionLabel = 'Break'
     }
     let elapsedTime = parseInt(timeSpentInCurrentSession / 60)
+    timeTotalDay += elapsedTime
     elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1'
 
     const text = document.createTextNode(`${sessionLabel} : ${elapsedTime} min`)
