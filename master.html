@@ -1,15 +1,42 @@
-<div id="pomodoro-container">
-    <div id="pomodoro-clock">
-        <div id="pomodoro-timer"></div>
-        <div id="pomodoro-clock-actions">
-            <button id="pomodoro-start">Start</button>
-            <button id="pomodoro-pause">Pause</button>
-            <button id="pomodoro-stop">Stop</button>
-        </div>
-    </div>
-</div>
+<h3 style="font:Courier New;">
+    <div id="pomodoro-timer"></div>
 
-<div id="pomodoro-info">
-    <h3>Your Sessions</h3>
-    <ul id="pomodoro-sessions"></ul>
-</div>
+    <body style="background-color:pink;">
+
+        <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!" type="text" id="pomodoro-clock-task" <div id="pomodoro-container">
+        <div id="pomodoro-clock">
+
+            <div> <br>
+                <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!..." />
+            </div>
+            <div id="pomodoro-clock-actions"> <br>
+                <button id="pomodoro-start">Start</button>
+                <button id="pomodoro-pause">Pause</button>
+                <button id="pomodoro-stop">Stop</button>
+            </div>
+            <!-- new -->
+            <div id="pomodoro-clock-title">
+                <br>
+                <span>
+             Changes made here will reflect at the start of the next homework /
+             break session
+           </span>
+            </div>
+            <div id="pomodoro-clock-actions1">
+                <div class="pomodoro-input">
+                    <br>
+                    <label>Work Time</label>
+                    <input name="input-work-time" id="input-work-time" type="number" />
+                </div>
+                <div class="pomodoro-input">
+                    <br>
+                    <label>Break Time</label>
+                    <input name="input-break-time" id="input-break-time" type="number" />
+                </div>
+            </div>
+            <div id="pomodoro-info">
+                <h2>Work I've Done </h2>
+                <ul id="pomodoro-sessions">
+                </ul>
+            </div>
+        </div>
