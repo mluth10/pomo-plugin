@@ -217,6 +217,18 @@ let timeSpentInCurrentSession = 0
 let timeTotalDay = 0
 
 
+//array of total time per day in the past week
+let week = [0, 0, 0, 0, 0, 0, 0]
+let dayIdx = 0
+
+//label the entry box
+let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
+
+const getWeek = () => {
+    return week
+}
+
+
 const toggleClock = reset => {
     if (reset) {
         // STOP THE TIMER
@@ -237,6 +249,7 @@ const toggleClock = reset => {
         }
     }
 }
+
 
 function show_image(src, width, height, alt) {
     var img = document.createElement("img");
@@ -298,6 +311,7 @@ const showCandies = () => {
     var myWindow = window.open("", "MsgWindow", "width=200,height=100");
     myWindow.document.write(`<p>You've earned ${currentCandies + cand}!</p>`);
 }
+
 
 const stepDown = () => {
     if (currentTimeLeftInSession > 0) {
