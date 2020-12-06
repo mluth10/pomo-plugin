@@ -327,4 +327,6 @@ const stopClock = () => {
     type = 'Work'
 }
 
+
 pomodoroTimer.innerText = result
+
