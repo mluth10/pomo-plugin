@@ -1,9 +1,63 @@
+//array of total time per day in the past week
+let week = [0, 0, 0, 0, 0, 0, 0]
+let dayIdx = 0
+
+const getWeek = () => {
+    return week
+}
+
+var chart = new CanvasJS.Chart("chartContainer", {
+    week: getWeek(),
+
+    animationEnabled: true,
+    backgroundColor: null,
+    theme: "light2",
+    title: { text: "Time Spent Over the Last Week" },
+    axisY: { includeZero: true },
+    legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
+    data: [{
+            type: "line",
+            lineThickness: 4,
+            showInLegend: true,
+            name: "Daily Time",
+            markerType: "square",
+            color: "#F08080",
+            dataPoints: [
+                { x: 0, y: week[0] },
+                { x: 1, y: week[1] },
+                { x: 2, y: week[2] },
+                { x: 3, y: week[3] },
+                { x: 4, y: week[4] },
+                { x: 5, y: week[5] },
+                { x: 6, y: week[6] }
+            ]
+        },
+        {
+            type: "line",
+            lineThickness: 4,
+            showInLegend: true,
+            name: "Goal Daily Time",
+            lineDashType: "dash",
+            color: "#46B7FF",
+            dataPoints: [
+                { x: 0, y: 5 },
+                { x: 1, y: 5 },
+                { x: 2, y: 5 },
+                { x: 3, y: 5 },
+                { x: 4, y: 5 },
+                { x: 5, y: 5 },
+                { x: 6, y: 5 }
+            ]
+        }
+    ]
+});
+chart.render();
+
 const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
 const pauseButton = document.querySelector('#pomodoro-pause')
 const stopButton = document.querySelector('#pomodoro-stop')
 const dayButton = document.querySelector('#pomodoro-day')
-
 
 // START
 startButton.addEventListener('click', () => {
@@ -23,17 +77,69 @@ stopButton.addEventListener('click', () => {
 dayButton.addEventListener('click', () => {
     week[dayIdx] = timeTotalDay
     dayIdx += 1
+    timeTotalDay = 0
 
     const changeIdx = (dayIdx) => {
         if (dayIdx === 7) {
-            dayIdx = 0 
+            dayIdx = 0
         }
     }
-    changeIdx(dayIdx)
-    toggleClock(true)
 
+    changeIdx(dayIdx)
+        //toggleClock(true)
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        week: getWeek(),
+
+        animationEnabled: true,
+        backgroundColor: null,
+        theme: "light2",
+        title: { text: "Time Spent Over the Last Week" },
+        axisY: { includeZero: true },
+        legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
+        data: [{
+                type: "line",
+                lineThickness: 4,
+                showInLegend: true,
+                name: "Daily Time",
+                markerType: "square",
+                color: "#F08080",
+                dataPoints: [
+                    { x: 0, y: week[0] },
+                    { x: 1, y: week[1] },
+                    { x: 2, y: week[2] },
+                    { x: 3, y: week[3] },
+                    { x: 4, y: week[4] },
+                    { x: 5, y: week[5] },
+                    { x: 6, y: week[6] }
+                ]
+            },
+            {
+                type: "line",
+                lineThickness: 4,
+                showInLegend: true,
+                name: "Goal Daily Time",
+                lineDashType: "dash",
+                color: "#46B7FF",
+                dataPoints: [
+                    { x: 0, y: 5 },
+                    { x: 1, y: 5 },
+                    { x: 2, y: 5 },
+                    { x: 3, y: 5 },
+                    { x: 4, y: 5 },
+                    { x: 5, y: 5 },
+                    { x: 6, y: 5 }
+                ]
+            }
+        ]
+    });
     chart.render()
 })
+
+//label the entry box
+let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
+
+let currentCandies = 0;
 
 let type = 'Work'
 let isClockRunning = false
@@ -48,22 +154,9 @@ let breakSessionDuration = 300
 //keep track of seconds spent
 let timeSpentInCurrentSession = 0
 
-//keep track of total time spend
+//keep track of total time spent
 let timeTotalDay = 0
 
-//array of total time per day in the past week
-let week = [0, 0, 0, 0, 0, 0, 0]
-let dayIdx = 0
-
-//label the entry box
-let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
-
-
-let currentCandies = 0;
-
-const getWeek = () => {
-    return week
-}
 
 const toggleClock = reset => {
     if (reset) {
@@ -86,16 +179,6 @@ const toggleClock = reset => {
     }
 }
 
-const changeIdx = (dayIdx) => {
-    if (dayIdx === 7) {
-        dayIdx = 0
-    }
-}
-
-
-
-
-
 function show_image(src, width, height, alt) {
     var img = document.createElement("img");
     img.src = src;
@@ -106,7 +189,57 @@ function show_image(src, width, height, alt) {
     document.getElementById("p1").innerHTML = `Current Candies:  ${currentCandies} `
         // This next line will just add it to the <body> tag
     document.body.appendChild(img);
+    if (currentCandies === 5) {
+        stopClock()
+        'use strict';
+
+        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+        r(function() {
+            if (!document.getElementsByClassName) {
+                // IE8 support
+                var getElementsByClassName = function(node, classname) {
+                    var a = [];
+                    var re = new RegExp('(^| )' + classname + '( |$)');
+                    var els = node.getElementsByTagName("*");
+                    for (var i = 0, j = els.length; i < j; i++)
+                        if (re.test(els[i].className)) a.push(els[i]);
+                    return a;
+                }
+                var videos = getElementsByClassName(document.body, "youtube");
+            } else {
+                var videos = document.getElementsByClassName("youtube");
+            }
+
+            var nb_videos = videos.length;
+            for (var i = 0; i < nb_videos; i++) {
+                // Based on the YouTube ID, we can easily find the thumbnail image
+                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+
+                // Overlay the Play icon to make it look like a video player
+                var play = document.createElement("div");
+                play.setAttribute("class", "play");
+                videos[i].appendChild(play);
+
+                videos[i].onclick = function() {
+                    // Create an iFrame with autoplay set to true
+                    var iframe = document.createElement("iframe");
+                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+                    iframe.setAttribute("src", iframe_url);
+                    iframe.setAttribute("frameborder", '0');
+
+                    // The height and width of the iFrame should be the same as parent
+                    iframe.style.width = this.style.width;
+                    iframe.style.height = this.style.height;
+
+                    // Replace the YouTube thumbnail with YouTube Player
+                    this.parentNode.replaceChild(iframe, this);
+                }
+            }
+        });
+    }
 }
+
 
 const stepDown = () => {
     if (currentTimeLeftInSession > 0) {
@@ -132,7 +265,9 @@ const stepDown = () => {
             displaySessionLog('Break')
         }
     }
+
     displayCurrentTimeLeftInSession()
+    candyQualification()
 }
 
 
@@ -171,6 +306,15 @@ const displayCurrentTimeLeftInSession = () => {
     result += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`
     pomodoroTimer.innerText = result.toString()
 }
+const candyQualification = () => {
+    const secondsLeft = currentTimeLeftInSession
+    let result = ''
+    const earn = secondsLeft % 10
+        // add leading zeroes if it's less than 10
+    if (earn === 0) {
+        show_image('https://ae01.alicdn.com/kf/HTB1LU9nQpXXXXaLXVXXq6xXFXXXh/12CM-7CM-Cartoon-Candy-car-stickers-decals-accessories-cover-decorate-automobiles-motorcycle-exterior.jpg', 100, 100, 'pic')
+    }
+}
 
 const stopClock = () => {
     // new
@@ -183,53 +327,4 @@ const stopClock = () => {
     type = 'Work'
 }
 
-
 pomodoroTimer.innerText = result
-
-window.onload = function() {
-
-    var chart = new CanvasJS.Chart("chartContainer", {
-        week: getWeek(),
-
-        animationEnabled: true,
-        theme: "light2",
-        title: { text: "Time Spent Over the Last Week" },
-        //axisX:{valueFormatString: "DDD"},
-        axisY: { includeZero: true },
-        legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
-        data: [{
-                type: "line",
-                showInLegend: true,
-                name: "Daily Time",
-                markerType: "square",
-                color: "#F08080",
-                dataPoints: [
-                    { x: 0, y: week[0] },
-                    { x: 1, y: week[1] },
-                    { x: 2, y: week[2] },
-                    { x: 3, y: week[3] },
-                    { x: 4, y: week[4] },
-                    { x: 5, y: week[5] },
-                    { x: 6, y: week[6] }
-                ]
-            },
-            {
-                type: "line",
-                showInLegend: true,
-                name: "Goal Daily Time",
-                lineDashType: "dash",
-                color: "#46B7FF",
-                dataPoints: [
-                    { x: 0, y: 125 },
-                    { x: 1, y: 125 },
-                    { x: 2, y: 125 },
-                    { x: 3, y: 125 },
-                    { x: 4, y: 125 },
-                    { x: 5, y: 125 },
-                    { x: 6, y: 125 }
-                ]
-            }
-        ]
-    });
-    chart.render();
-}
