@@ -1,9 +1,62 @@
+//array of total time per day in the past week
+let week = [0, 0, 0, 0, 0, 0, 0]
+let dayIdx = 0
+
+const getWeek = () => {
+    return week
+}
+
+var chart = new CanvasJS.Chart("chartContainer", {
+    week : getWeek(),
+
+    animationEnabled: true,
+    backgroundColor: null,
+    theme: "light2",
+    title:{text: "Time Spent Over the Last Week"},
+    axisY:{includeZero: true},
+    legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
+    data: [{
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Daily Time",
+        markerType: "square",
+        color: "#F08080",
+        dataPoints: [
+            {x: 0, y: week[0]},
+            {x: 1, y: week[1]},
+            {x: 2, y: week[2]},
+            {x: 3, y: week[3]},
+            {x: 4, y: week[4]},
+            {x: 5, y: week[5]},
+            {x: 6, y: week[6]}
+        ]
+    },
+    {
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Goal Daily Time",
+        lineDashType: "dash",
+        color: "#46B7FF",
+        dataPoints: [
+            {x: 0, y: 5},
+            {x: 1, y: 5},
+            {x: 2, y: 5},
+            {x: 3, y: 5},
+            {x: 4, y: 5},
+            {x: 5, y: 5},
+            {x: 6, y: 5}
+        ]
+    }]
+});
+chart.render();
+
 const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
 const pauseButton = document.querySelector('#pomodoro-pause')
 const stopButton = document.querySelector('#pomodoro-stop')
 const dayButton = document.querySelector('#pomodoro-day')
-
 
 // START
 startButton.addEventListener('click', () => {
@@ -23,61 +76,68 @@ stopButton.addEventListener('click', () => {
 dayButton.addEventListener('click', () => {
     week[dayIdx] = timeTotalDay
     dayIdx += 1
+    timeTotalDay = 0
 
     const changeIdx = (dayIdx) => {
         if (dayIdx === 7) {
             dayIdx = 0 
         }
     }
+
     changeIdx(dayIdx)
-    toggleClock(true)
+    //toggleClock(true)
 
-    window.onload = function() {
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-            week : getWeek(),
-        
-            animationEnabled: true,
-            theme: "light2",
-            title:{text: "Time Spent Over the Last Week"},
-            axisY:{includeZero: true},
-            legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
-            data: [{
-                type: "line",
-                showInLegend: true,
-                name: "Daily Time",
-                markerType: "square",
-                color: "#F08080",
-                dataPoints: [
-                    {x: 0, y: week[0]},
-                    {x: 1, y: week[1]},
-                    {x: 2, y: week[2]},
-                    {x: 3, y: week[3]},
-                    {x: 4, y: week[4]},
-                    {x: 5, y: week[5]},
-                    {x: 6, y: week[6]}
-                ]
-            },
-            {
-                type: "line",
-                showInLegend: true,
-                name: "Goal Daily Time",
-                lineDashType: "dash",
-                color: "#46B7FF",
-                dataPoints: [
-                    {x: 0, y: 125},
-                    {x: 1, y: 125},
-                    {x: 2, y: 125},
-                    {x: 3, y: 125},
-                    {x: 4, y: 125},
-                    {x: 5, y: 125},
-                    {x: 6, y: 125}
-                ]
-            }]
-        });
-        chart.render();
-        }
+    var chart = new CanvasJS.Chart("chartContainer", {
+        week : getWeek(),
+    
+        animationEnabled: true,
+        backgroundColor: null,
+        theme: "light2",
+        title:{text: "Time Spent Over the Last Week"},
+        axisY:{includeZero: true},
+        legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
+        data: [{
+            type: "line",
+            lineThickness: 4,
+            showInLegend: true,
+            name: "Daily Time",
+            markerType: "square",
+            color: "#F08080",
+            dataPoints: [
+                {x: 0, y: week[0]},
+                {x: 1, y: week[1]},
+                {x: 2, y: week[2]},
+                {x: 3, y: week[3]},
+                {x: 4, y: week[4]},
+                {x: 5, y: week[5]},
+                {x: 6, y: week[6]}
+            ]
+        },
+        {
+            type: "line",
+            lineThickness: 4,
+            showInLegend: true,
+            name: "Goal Daily Time",
+            lineDashType: "dash",
+            color: "#46B7FF",
+            dataPoints: [
+                {x: 0, y: 5},
+                {x: 1, y: 5},
+                {x: 2, y: 5},
+                {x: 3, y: 5},
+                {x: 4, y: 5},
+                {x: 5, y: 5},
+                {x: 6, y: 5}
+            ]
+        }]
+    });
+    chart.render()
 })
+
+//label the entry box
+let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
+
+let currentCandies = 0;
 
 let type = 'Work'
 let isClockRunning = false
@@ -92,8 +152,9 @@ let breakSessionDuration = 300
 //keep track of seconds spent
 let timeSpentInCurrentSession = 0
 
-//keep track of total time spend
+//keep track of total time spent
 let timeTotalDay = 0
+
 
 //array of total time per day in the past week
 let week = [0, 0, 0, 0, 0, 0, 0]
@@ -105,6 +166,7 @@ let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
 const getWeek = () => {
     return week
 }
+
 
 const toggleClock = reset => {
     if (reset) {
@@ -125,6 +187,19 @@ const toggleClock = reset => {
             }, 1000)
         }
     }
+}
+
+
+function show_image(src, width, height, alt) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = alt;
+    currentCandies++;
+    document.getElementById("p1").innerHTML = `Current Candies:  ${currentCandies} `
+        // This next line will just add it to the <body> tag
+    document.body.appendChild(img);
 }
 
 
@@ -205,4 +280,5 @@ const stopClock = () => {
 
 
 pomodoroTimer.innerText = result
+
 
