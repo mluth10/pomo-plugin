@@ -1,57 +1,89 @@
 //array of total time per day in the past week
 let week = [0, 0, 0, 0, 0, 0, 0]
 let dayIdx = 0
+let candyWeek = [0, 0, 0, 0, 0, 0, 0]
 
 const getWeek = () => {
     return week
 }
 
+const getCandy = () => {
+    return candyWeek
+}
+
+
 var chart = new CanvasJS.Chart("chartContainer", {
     week: getWeek(),
-
+    candyWeek: getCandy(),
+  
     animationEnabled: true,
     backgroundColor: null,
     theme: "light2",
-    title: { text: "Time Spent Over the Last Week" },
-    axisY: { includeZero: true },
-    legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
+    title: {
+      text: "Time Spent Over the Last Week"
+    },
+    axisY: {
+      includeZero: true
+    },
+    legend: {
+      verticalAlign: "bottom",
+      horizontalAlign: "left",
+      dockInsidePlotArea: true
+    },
     data: [{
-            type: "line",
-            lineThickness: 4,
-            showInLegend: true,
-            name: "Daily Time",
-            markerType: "square",
-            color: "#F08080",
-            dataPoints: [
-                { x: 0, y: week[0] },
-                { x: 1, y: week[1] },
-                { x: 2, y: week[2] },
-                { x: 3, y: week[3] },
-                { x: 4, y: week[4] },
-                { x: 5, y: week[5] },
-                { x: 6, y: week[6] }
-            ]
-        },
-        {
-            type: "line",
-            lineThickness: 4,
-            showInLegend: true,
-            name: "Goal Daily Time",
-            lineDashType: "dash",
-            color: "#46B7FF",
-            dataPoints: [
-                { x: 0, y: 5 },
-                { x: 1, y: 5 },
-                { x: 2, y: 5 },
-                { x: 3, y: 5 },
-                { x: 4, y: 5 },
-                { x: 5, y: 5 },
-                { x: 6, y: 5 }
-            ]
-        }
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Daily Time",
+        markerType: "square",
+        color: "#f72585",
+        dataPoints: [
+            {x: 0, y: week[0]},
+            {x: 1, y: week[1]},
+            {x: 2, y: week[2]},
+            {x: 3, y: week[3]},
+            {x: 4, y: week[4]},
+            {x: 5, y: week[5]},
+            {x: 6, y: week[6]}
+        ]
+      },
+      {
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Candies Accumulated",
+        markerType: "triangle",
+        color: "#480ca8",
+        dataPoints: [
+            {x: 0, y: candyWeek[0]},
+            {x: 1, y: candyWeek[1]},
+            {x: 2, y: candyWeek[2]},
+            {x: 3, y: candyWeek[3]},
+            {x: 4, y: candyWeek[4]},
+            {x: 5, y: candyWeek[5]},
+            {x: 6, y: candyWeek[6]}
+        ]
+      },
+      {
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Goal Daily Time",
+        lineDashType: "dash",
+        color: "#4895ef",
+        dataPoints: [
+            {x: 0, y: 5},
+            {x: 1, y: 5},
+            {x: 2, y: 5},
+            {x: 3, y: 5},
+            {x: 4, y: 5},
+            {x: 5, y: 5},
+            {x: 6, y: 5}
+        ]
+      }
     ]
-});
-chart.render();
+  });
+chart.render()
 
 const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
@@ -76,6 +108,7 @@ stopButton.addEventListener('click', () => {
 
 dayButton.addEventListener('click', () => {
     week[dayIdx] = timeTotalDay
+    candyWeek[dayIdx] = currentCandies
     dayIdx += 1
     timeTotalDay = 0
 
@@ -88,51 +121,77 @@ dayButton.addEventListener('click', () => {
     changeIdx(dayIdx)
         //toggleClock(true)
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        week: getWeek(),
-
-        animationEnabled: true,
-        backgroundColor: null,
-        theme: "light2",
-        title: { text: "Time Spent Over the Last Week" },
-        axisY: { includeZero: true },
-        legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
-        data: [{
+        var chart = new CanvasJS.Chart("chartContainer", {
+            week: getWeek(),
+            candyWeek: getCandy(),
+          
+            animationEnabled: true,
+            backgroundColor: null,
+            theme: "light2",
+            title: {
+              text: "Time Spent Over the Last Week"
+            },
+            axisY: {
+              includeZero: true
+            },
+            legend: {
+              verticalAlign: "bottom",
+              horizontalAlign: "left",
+              dockInsidePlotArea: true
+            },
+            data: [{
                 type: "line",
                 lineThickness: 4,
                 showInLegend: true,
                 name: "Daily Time",
                 markerType: "square",
-                color: "#F08080",
+                color: "#f72585",
                 dataPoints: [
-                    { x: 0, y: week[0] },
-                    { x: 1, y: week[1] },
-                    { x: 2, y: week[2] },
-                    { x: 3, y: week[3] },
-                    { x: 4, y: week[4] },
-                    { x: 5, y: week[5] },
-                    { x: 6, y: week[6] }
+                    {x: 0, y: week[0]},
+                    {x: 1, y: week[1]},
+                    {x: 2, y: week[2]},
+                    {x: 3, y: week[3]},
+                    {x: 4, y: week[4]},
+                    {x: 5, y: week[5]},
+                    {x: 6, y: week[6]}
                 ]
-            },
-            {
+              },
+              {
+                type: "line",
+                lineThickness: 4,
+                showInLegend: true,
+                name: "Candies Accumulated",
+                markerType: "triangle",
+                color: "#480ca8",
+                dataPoints: [
+                    {x: 0, y: candyWeek[0]},
+                    {x: 1, y: candyWeek[1]},
+                    {x: 2, y: candyWeek[2]},
+                    {x: 3, y: candyWeek[3]},
+                    {x: 4, y: candyWeek[4]},
+                    {x: 5, y: candyWeek[5]},
+                    {x: 6, y: candyWeek[6]}
+                ]
+              },
+              {
                 type: "line",
                 lineThickness: 4,
                 showInLegend: true,
                 name: "Goal Daily Time",
                 lineDashType: "dash",
-                color: "#46B7FF",
+                color: "#4895ef",
                 dataPoints: [
-                    { x: 0, y: 5 },
-                    { x: 1, y: 5 },
-                    { x: 2, y: 5 },
-                    { x: 3, y: 5 },
-                    { x: 4, y: 5 },
-                    { x: 5, y: 5 },
-                    { x: 6, y: 5 }
+                    {x: 0, y: 5},
+                    {x: 1, y: 5},
+                    {x: 2, y: 5},
+                    {x: 3, y: 5},
+                    {x: 4, y: 5},
+                    {x: 5, y: 5},
+                    {x: 6, y: 5}
                 ]
-            }
-        ]
-    });
+              }
+            ]
+          });
     chart.render()
 })
 
@@ -189,55 +248,35 @@ function show_image(src, width, height, alt) {
     document.getElementById("p1").innerHTML = `Current Candies:  ${currentCandies} `
         // This next line will just add it to the <body> tag
     document.body.appendChild(img);
-    if (currentCandies === 5) {
-        stopClock()
-        'use strict';
 
-        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
-        r(function() {
-            if (!document.getElementsByClassName) {
-                // IE8 support
-                var getElementsByClassName = function(node, classname) {
-                    var a = [];
-                    var re = new RegExp('(^| )' + classname + '( |$)');
-                    var els = node.getElementsByTagName("*");
-                    for (var i = 0, j = els.length; i < j; i++)
-                        if (re.test(els[i].className)) a.push(els[i]);
-                    return a;
-                }
-                var videos = getElementsByClassName(document.body, "youtube");
-            } else {
-                var videos = document.getElementsByClassName("youtube");
-            }
+    if (currentCandies === 2) {
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("Click me to spend 5 candies!");
+        var foo = document.getElementById("pomo-buttons");
+        x.appendChild(t);
+        foo.appendChild(x);
+        x.setAttribute("onClick", "button1()");
 
-            var nb_videos = videos.length;
-            for (var i = 0; i < nb_videos; i++) {
-                // Based on the YouTube ID, we can easily find the thumbnail image
-                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
-
-                // Overlay the Play icon to make it look like a video player
-                var play = document.createElement("div");
-                play.setAttribute("class", "play");
-                videos[i].appendChild(play);
-
-                videos[i].onclick = function() {
-                    // Create an iFrame with autoplay set to true
-                    var iframe = document.createElement("iframe");
-                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
-                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
-                    iframe.setAttribute("src", iframe_url);
-                    iframe.setAttribute("frameborder", '0');
-
-                    // The height and width of the iFrame should be the same as parent
-                    iframe.style.width = this.style.width;
-                    iframe.style.height = this.style.height;
-
-                    // Replace the YouTube thumbnail with YouTube Player
-                    this.parentNode.replaceChild(iframe, this);
-                }
-            }
-        });
     }
+    if (currentCandies === 4) {
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("Click me to spend 10 candies!");
+        var foo = document.getElementById("pomo-buttons");
+        x.appendChild(t);
+        foo.appendChild(x);
+        x.setAttribute("onClick", "button2()");
+
+    }
+    if (currentCandies === 6) {
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("Click me to spend 15 candies!");
+        var foo = document.getElementById("pomo-buttons");
+        x.appendChild(t);
+        foo.appendChild(x);
+        x.setAttribute("onClick", "button3()");
+
+    }
+
 }
 
 
@@ -309,13 +348,176 @@ const displayCurrentTimeLeftInSession = () => {
 const candyQualification = () => {
     const secondsLeft = currentTimeLeftInSession
     let result = ''
-    const earn = secondsLeft % 10
+    const earn = secondsLeft % 5
         // add leading zeroes if it's less than 10
     if (earn === 0) {
         show_image('https://ae01.alicdn.com/kf/HTB1LU9nQpXXXXaLXVXXq6xXFXXXh/12CM-7CM-Cartoon-Candy-car-stickers-decals-accessories-cover-decorate-automobiles-motorcycle-exterior.jpg', 100, 100, 'pic')
     }
+
 }
 
+const button1 = () => {
+    if (currentCandies >= 5) {
+
+        'use strict';
+
+        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+        r(function() {
+            if (!document.getElementsByClassName) {
+                // IE8 support
+                var getElementsByClassName = function(node, classname) {
+                    var a = [];
+                    var re = new RegExp('(^| )' + classname + '( |$)');
+                    var els = node.getElementsByTagName("*");
+                    for (var i = 0, j = els.length; i < j; i++)
+                        if (re.test(els[i].className)) a.push(els[i]);
+                    return a;
+                }
+                var videos = getElementsByClassName(document.body, "youtube");
+            } else {
+                var videos = document.getElementsByClassName("youtube");
+            }
+
+            var nb_videos = videos.length;
+            for (var i = 0; i < nb_videos; i++) {
+                // Based on the YouTube ID, we can easily find the thumbnail image
+                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+
+                // Overlay the Play icon to make it look like a video player
+                var play = document.createElement("div");
+                play.setAttribute("class", "play");
+                videos[i].appendChild(play);
+
+                videos[i].onclick = function() {
+                    // Create an iFrame with autoplay set to true
+                    var iframe = document.createElement("iframe");
+                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+                    iframe.setAttribute("src", iframe_url);
+                    iframe.setAttribute("frameborder", '0');
+
+                    // The height and width of the iFrame should be the same as parent
+                    iframe.style.width = this.style.width;
+                    iframe.style.height = this.style.height;
+
+                    // Replace the YouTube thumbnail with YouTube Player
+                    this.parentNode.replaceChild(iframe, this);
+                }
+            }
+        });
+        currentCandies = currentCandies - 10;
+    } else {
+        alert("Not enough candies yet!");
+    }
+}
+const button2 = () => {
+    if (currentCandies >= 10) {
+
+        'use strict';
+
+        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+        r(function() {
+            if (!document.getElementsByClassName) {
+                // IE8 support
+                var getElementsByClassName = function(node, classname) {
+                    var a = [];
+                    var re = new RegExp('(^| )' + classname + '( |$)');
+                    var els = node.getElementsByTagName("*");
+                    for (var i = 0, j = els.length; i < j; i++)
+                        if (re.test(els[i].className)) a.push(els[i]);
+                    return a;
+                }
+                var videos = getElementsByClassName(document.body, "youtube");
+            } else {
+                var videos = document.getElementsByClassName("youtube");
+            }
+
+            var nb_videos = videos.length;
+            for (var i = 0; i < nb_videos; i++) {
+                // Based on the YouTube ID, we can easily find the thumbnail image
+                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+
+                // Overlay the Play icon to make it look like a video player
+                var play = document.createElement("div");
+                play.setAttribute("class", "play");
+                videos[i].appendChild(play);
+
+                videos[i].onclick = function() {
+                    // Create an iFrame with autoplay set to true
+                    var iframe = document.createElement("iframe");
+                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+                    iframe.setAttribute("src", iframe_url);
+                    iframe.setAttribute("frameborder", '0');
+
+                    // The height and width of the iFrame should be the same as parent
+                    iframe.style.width = this.style.width;
+                    iframe.style.height = this.style.height;
+
+                    // Replace the YouTube thumbnail with YouTube Player
+                    this.parentNode.replaceChild(iframe, this);
+                }
+            }
+        });
+        currentCandies = currentCandies - 10;
+    } else {
+        alert("Not enough candies yet!");
+    }
+}
+const button3 = () => {
+    if (currentCandies >= 15) {
+
+        'use strict';
+
+        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+        r(function() {
+            if (!document.getElementsByClassName) {
+                // IE8 support
+                var getElementsByClassName = function(node, classname) {
+                    var a = [];
+                    var re = new RegExp('(^| )' + classname + '( |$)');
+                    var els = node.getElementsByTagName("*");
+                    for (var i = 0, j = els.length; i < j; i++)
+                        if (re.test(els[i].className)) a.push(els[i]);
+                    return a;
+                }
+                var videos = getElementsByClassName(document.body, "youtube");
+            } else {
+                var videos = document.getElementsByClassName("youtube");
+            }
+
+            var nb_videos = videos.length;
+            for (var i = 0; i < nb_videos; i++) {
+                // Based on the YouTube ID, we can easily find the thumbnail image
+                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+
+                // Overlay the Play icon to make it look like a video player
+                var play = document.createElement("div");
+                play.setAttribute("class", "play");
+                videos[i].appendChild(play);
+
+                videos[i].onclick = function() {
+                    // Create an iFrame with autoplay set to true
+                    var iframe = document.createElement("iframe");
+                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+                    iframe.setAttribute("src", iframe_url);
+                    iframe.setAttribute("frameborder", '0');
+
+                    // The height and width of the iFrame should be the same as parent
+                    iframe.style.width = this.style.width;
+                    iframe.style.height = this.style.height;
+
+                    // Replace the YouTube thumbnail with YouTube Player
+                    this.parentNode.replaceChild(iframe, this);
+                }
+            }
+        });
+        currentCandies = currentCandies - 15;
+    } else {
+        alert("Not enough candies yet!");
+    }
+}
 const stopClock = () => {
     // new
     displaySessionLog(type)
@@ -329,4 +531,3 @@ const stopClock = () => {
 
 
 pomodoroTimer.innerText = result
-

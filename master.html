@@ -17,20 +17,35 @@
         }
         
         input[type=text] {
-          width: 50%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          box-sizing: border-box;
-          
-          border-radius: 4px;
-          background-color: #6B7B8A;
-          color: white;
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 4px;
+            background-color: #6B7B8A;
+            color: white;
         }
         
-        .button1 {background-color: #FFCBF2;} /* Start */
-        .button2 {background-color: #DEAAFF;} /* Pause */
-        .button3 {background-color: #C0FDFF;} /* Stop */
-        .button4 {background-color: #FCBFB7;} /* All Done */
+        .button1 {
+            background-color: #FFCBF2;
+        }
+        /* Start */
+        
+        .button2 {
+            background-color: #DEAAFF;
+        }
+        /* Pause */
+        
+        .button3 {
+            background-color: #C0FDFF;
+        }
+        /* Stop */
+        
+        .button4 {
+            background-color: #FCBFB7;
+        }
+        /* All Done */
+        
         body {
             background-image: linear-gradient(to bottom right, #fbc7d4, #9796f0);
             font-family: 'Trebuchet MS';
@@ -73,30 +88,34 @@
             <p>
                 <div>
                     <label for="fname">What work are you doing?</label><br>
-                    <input type="text" id="pomodoro-clock-task"  />
+                    <input type="text" id="pomodoro-clock-task" />
                 </div>
-                
+
             </p>
 
             <div id="pomodoro-clock-actions"> <br>
-                <button id="pomodoro-start", class="button button1">Start</button>
-                <button id="pomodoro-pause", class="button button2">Pause</button>
-                <button id="pomodoro-stop", class="button button3">Stop</button>
-                <button id="pomodoro-day", class="button button4">All Done!</button>
-            
+                <button id="pomodoro-start" , class="button button1">Start</button>
+                <button id="pomodoro-pause" , class="button button2">Pause</button>
+                <button id="pomodoro-stop" , class="button button3">Stop</button>
+                <button id="pomodoro-day" , class="button button4">All Done!</button>
 
+                <br>
+                <br>
+                <br>
 
                 <div id="pomodoro-info">
                     <h3>Work I've Done </h3>
                     <p>
                         <ul id="pomodoro-sessions">
                         </ul>
+                        <div id="pomo-buttons">
 
-
-                        <div id='pomodoro-candies'>
-                            <p id="p1">Current Candies: 0 </p>
-                            <div class="youtube" id="UW6H5dAPuhY" style="width: 500px; height: 281px;">
-                            </div>
                         </div>
-                        <script src="popup.js"></script>
+                </div>
 
+                <div id='pomodoro-candies'>
+                    <p id="p1">Current Candies: 0 </p>
+                    <div class="youtube" id="UW6H5dAPuhY" style="width: 500px; height: 281px;">
+                    </div>
+                </div>
+                <script src="popup.js"></script>
