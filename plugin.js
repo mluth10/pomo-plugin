@@ -23,7 +23,60 @@ stopButton.addEventListener('click', () => {
 dayButton.addEventListener('click', () => {
     week[dayIdx] = timeTotalDay
     dayIdx += 1
+
+    const changeIdx = (dayIdx) => {
+        if (dayIdx === 7) {
+            dayIdx = 0 
+        }
+    }
     changeIdx(dayIdx)
+    toggleClock(true)
+
+    window.onload = function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            week : getWeek(),
+        
+            animationEnabled: true,
+            theme: "light2",
+            title:{text: "Time Spent Over the Last Week"},
+            axisY:{includeZero: true},
+            legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
+            data: [{
+                type: "line",
+                showInLegend: true,
+                name: "Daily Time",
+                markerType: "square",
+                color: "#F08080",
+                dataPoints: [
+                    {x: 0, y: week[0]},
+                    {x: 1, y: week[1]},
+                    {x: 2, y: week[2]},
+                    {x: 3, y: week[3]},
+                    {x: 4, y: week[4]},
+                    {x: 5, y: week[5]},
+                    {x: 6, y: week[6]}
+                ]
+            },
+            {
+                type: "line",
+                showInLegend: true,
+                name: "Goal Daily Time",
+                lineDashType: "dash",
+                color: "#46B7FF",
+                dataPoints: [
+                    {x: 0, y: 125},
+                    {x: 1, y: 125},
+                    {x: 2, y: 125},
+                    {x: 3, y: 125},
+                    {x: 4, y: 125},
+                    {x: 5, y: 125},
+                    {x: 6, y: 125}
+                ]
+            }]
+        });
+        chart.render();
+        }
 })
 
 let type = 'Work'
@@ -48,6 +101,7 @@ let dayIdx = 0
 
 //label the entry box
 let currentTaskLabel = document.querySelector('#pomodoro-clock-task')
+
 
 let currentCandies = 0;
 
