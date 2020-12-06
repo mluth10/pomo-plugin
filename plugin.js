@@ -1,57 +1,89 @@
 //array of total time per day in the past week
 let week = [0, 0, 0, 0, 0, 0, 0]
 let dayIdx = 0
+let candyWeek = [0, 0, 0, 0, 0, 0, 0]
 
 const getWeek = () => {
     return week
 }
 
+const getCandy = () => {
+    return candyWeek
+}
+
+
 var chart = new CanvasJS.Chart("chartContainer", {
     week: getWeek(),
-
+    candyWeek: getCandy(),
+  
     animationEnabled: true,
     backgroundColor: null,
     theme: "light2",
-    title: { text: "Time Spent Over the Last Week" },
-    axisY: { includeZero: true },
-    legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
+    title: {
+      text: "Time Spent Over the Last Week"
+    },
+    axisY: {
+      includeZero: true
+    },
+    legend: {
+      verticalAlign: "bottom",
+      horizontalAlign: "left",
+      dockInsidePlotArea: true
+    },
     data: [{
-            type: "line",
-            lineThickness: 4,
-            showInLegend: true,
-            name: "Daily Time",
-            markerType: "square",
-            color: "#F08080",
-            dataPoints: [
-                { x: 0, y: week[0] },
-                { x: 1, y: week[1] },
-                { x: 2, y: week[2] },
-                { x: 3, y: week[3] },
-                { x: 4, y: week[4] },
-                { x: 5, y: week[5] },
-                { x: 6, y: week[6] }
-            ]
-        },
-        {
-            type: "line",
-            lineThickness: 4,
-            showInLegend: true,
-            name: "Goal Daily Time",
-            lineDashType: "dash",
-            color: "#46B7FF",
-            dataPoints: [
-                { x: 0, y: 5 },
-                { x: 1, y: 5 },
-                { x: 2, y: 5 },
-                { x: 3, y: 5 },
-                { x: 4, y: 5 },
-                { x: 5, y: 5 },
-                { x: 6, y: 5 }
-            ]
-        }
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Daily Time",
+        markerType: "square",
+        color: "#f72585",
+        dataPoints: [
+            {x: 0, y: week[0]},
+            {x: 1, y: week[1]},
+            {x: 2, y: week[2]},
+            {x: 3, y: week[3]},
+            {x: 4, y: week[4]},
+            {x: 5, y: week[5]},
+            {x: 6, y: week[6]}
+        ]
+      },
+      {
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Candies Accumulated",
+        markerType: "triangle",
+        color: "#480ca8",
+        dataPoints: [
+            {x: 0, y: candyWeek[0]},
+            {x: 1, y: candyWeek[1]},
+            {x: 2, y: candyWeek[2]},
+            {x: 3, y: candyWeek[3]},
+            {x: 4, y: candyWeek[4]},
+            {x: 5, y: candyWeek[5]},
+            {x: 6, y: candyWeek[6]}
+        ]
+      },
+      {
+        type: "line",
+        lineThickness: 4,
+        showInLegend: true,
+        name: "Goal Daily Time",
+        lineDashType: "dash",
+        color: "#4895ef",
+        dataPoints: [
+            {x: 0, y: 5},
+            {x: 1, y: 5},
+            {x: 2, y: 5},
+            {x: 3, y: 5},
+            {x: 4, y: 5},
+            {x: 5, y: 5},
+            {x: 6, y: 5}
+        ]
+      }
     ]
-});
-chart.render();
+  });
+chart.render()
 
 const pomodoroTimer = document.querySelector('#pomodoro-timer')
 const startButton = document.querySelector('#pomodoro-start')
@@ -76,6 +108,7 @@ stopButton.addEventListener('click', () => {
 
 dayButton.addEventListener('click', () => {
     week[dayIdx] = timeTotalDay
+    candyWeek[dayIdx] = currentCandies
     dayIdx += 1
     timeTotalDay = 0
 
@@ -88,51 +121,77 @@ dayButton.addEventListener('click', () => {
     changeIdx(dayIdx)
         //toggleClock(true)
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        week: getWeek(),
-
-        animationEnabled: true,
-        backgroundColor: null,
-        theme: "light2",
-        title: { text: "Time Spent Over the Last Week" },
-        axisY: { includeZero: true },
-        legend: { verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true },
-        data: [{
+        var chart = new CanvasJS.Chart("chartContainer", {
+            week: getWeek(),
+            candyWeek: getCandy(),
+          
+            animationEnabled: true,
+            backgroundColor: null,
+            theme: "light2",
+            title: {
+              text: "Time Spent Over the Last Week"
+            },
+            axisY: {
+              includeZero: true
+            },
+            legend: {
+              verticalAlign: "bottom",
+              horizontalAlign: "left",
+              dockInsidePlotArea: true
+            },
+            data: [{
                 type: "line",
                 lineThickness: 4,
                 showInLegend: true,
                 name: "Daily Time",
                 markerType: "square",
-                color: "#F08080",
+                color: "#f72585",
                 dataPoints: [
-                    { x: 0, y: week[0] },
-                    { x: 1, y: week[1] },
-                    { x: 2, y: week[2] },
-                    { x: 3, y: week[3] },
-                    { x: 4, y: week[4] },
-                    { x: 5, y: week[5] },
-                    { x: 6, y: week[6] }
+                    {x: 0, y: week[0]},
+                    {x: 1, y: week[1]},
+                    {x: 2, y: week[2]},
+                    {x: 3, y: week[3]},
+                    {x: 4, y: week[4]},
+                    {x: 5, y: week[5]},
+                    {x: 6, y: week[6]}
                 ]
-            },
-            {
+              },
+              {
+                type: "line",
+                lineThickness: 4,
+                showInLegend: true,
+                name: "Candies Accumulated",
+                markerType: "triangle",
+                color: "#480ca8",
+                dataPoints: [
+                    {x: 0, y: candyWeek[0]},
+                    {x: 1, y: candyWeek[1]},
+                    {x: 2, y: candyWeek[2]},
+                    {x: 3, y: candyWeek[3]},
+                    {x: 4, y: candyWeek[4]},
+                    {x: 5, y: candyWeek[5]},
+                    {x: 6, y: candyWeek[6]}
+                ]
+              },
+              {
                 type: "line",
                 lineThickness: 4,
                 showInLegend: true,
                 name: "Goal Daily Time",
                 lineDashType: "dash",
-                color: "#46B7FF",
+                color: "#4895ef",
                 dataPoints: [
-                    { x: 0, y: 5 },
-                    { x: 1, y: 5 },
-                    { x: 2, y: 5 },
-                    { x: 3, y: 5 },
-                    { x: 4, y: 5 },
-                    { x: 5, y: 5 },
-                    { x: 6, y: 5 }
+                    {x: 0, y: 5},
+                    {x: 1, y: 5},
+                    {x: 2, y: 5},
+                    {x: 3, y: 5},
+                    {x: 4, y: 5},
+                    {x: 5, y: 5},
+                    {x: 6, y: 5}
                 ]
-            }
-        ]
-    });
+              }
+            ]
+          });
     chart.render()
 })
 
