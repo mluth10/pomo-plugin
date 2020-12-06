@@ -2,29 +2,59 @@
 
 <head>
     <style>
+        .button {
+            float: left;
+            border: 3px solid black;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        input[type=text] {
+          width: 50%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          
+          border-radius: 4px;
+          background-color: #6B7B8A;
+          color: white;
+        }
+        
+        .button1 {background-color: #FFCBF2;} /* Start */
+        .button2 {background-color: #DEAAFF;} /* Pause */
+        .button3 {background-color: #C0FDFF;} /* Stop */
+        .button4 {background-color: #FCBFB7;} /* All Done */
         body {
             background-image: linear-gradient(to bottom right, #fbc7d4, #9796f0);
-            font-family: 'Georgia';
+            font-family: 'Trebuchet MS';
+            color: black;
         }
         
         h3 {
             color: rgb(24, 24, 24);
-            font-family: 'Georgia';
+            font-family: 'Trebuchet MS';
         }
         
         p {
             color: rgb(226, 226, 226);
-            font-family: 'Georgia';
+            font-family: 'Trebuchet MS';
         }
         
         label {
             color: rgb(24, 24, 24);
-            font-family: 'Georgia';
+            font-family: 'Trebuchet MS';
         }
         
         span {
             color: rgb(24, 24, 24);
-            font-family: 'Georgia';
+            font-family: 'Trebuchet MS';
         }
     </style>
 </head>
@@ -42,42 +72,18 @@
 
             <p>
                 <div>
-                    <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!" />
+                    <label for="fname">What work are you doing?</label><br>
+                    <input type="text" id="pomodoro-clock-task"  />
                 </div>
-                <div>
-                    <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!" />
-                </div>
+                
             </p>
 
             <div id="pomodoro-clock-actions"> <br>
-                <button id="pomodoro-start">Start</button>
-                <button id="pomodoro-pause">Pause</button>
-                <button id="pomodoro-stop">Stop</button>
-                <button id="pomodoro-day">All Done!</button>
-            </div>
-
-            <!-- new -->
-            <div id="pomodoro-clock-title">
-                <br>
-                <span>
-            Changes made here will reflect at the start of the next homework /
-            break session
-                </span>
-            </div>
-
-            <p>
-                <div id="pomodoro-clock-actions1">
-                    <div class="pomodoro-input">
-                        <br>
-                        <label>Work Time</label>
-                        <input name="input-work-time" id="input-work-time" type="number" />
-                    </div>
-                    <div class="pomodoro-input">
-                        <br>
-                        <label>Break Time</label>
-                        <input name="input-break-time" id="input-break-time" type="number" />
-                    </div>
-                </div>
+                <button id="pomodoro-start", class="button button1">Start</button>
+                <button id="pomodoro-pause", class="button button2">Pause</button>
+                <button id="pomodoro-stop", class="button button3">Stop</button>
+                <button id="pomodoro-day", class="button button4">All Done!</button>
+            
 
 
                 <div id="pomodoro-info">
@@ -93,6 +99,4 @@
                             </div>
                         </div>
                         <script src="popup.js"></script>
-</body>
-</html>
 
