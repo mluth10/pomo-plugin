@@ -213,8 +213,6 @@ let timeSpentInCurrentSession = 0
 //keep track of total time spent
 let timeTotalDay = 0
 
-
-
 const toggleClock = reset => {
     if (reset) {
         // STOP THE TIMER
@@ -235,6 +233,7 @@ const toggleClock = reset => {
         }
     }
 }
+
 
 function show_image(src, width, height, alt) {
     var img = document.createElement("img");
@@ -289,6 +288,7 @@ const showCandies = () => {
     var myWindow = window.open("", "MsgWindow", "width=200,height=100");
     myWindow.document.write(`<p>You've earned ${currentCandies + cand}!</p>`);
 }
+
 
 const stepDown = () => {
     if (currentTimeLeftInSession > 0) {
