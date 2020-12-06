@@ -1,4 +1,5 @@
 <h3 style="font:Courier New;">
+    s demo text
     <div style="position: relative; width: 100%; height: 0; padding-top: 25.0000%;
                      padding-bottom: 48px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
                      border-radius: 8px; will-change: transform;">
@@ -8,27 +9,19 @@
     <div id="pomodoro-timer"></div>
 
     <body style="background-color:lightblue;">
+
+        <!-- <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAEPhFfrolY&#x2F;view?utm_content=DAEPhFfrolY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Design</a> by Sara Liszeski -->
         <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!" type="text" id="pomodoro-clock-task" <div id="pomodoro-container">
         <div id="pomodoro-clock">
-            <h3>
-                <div id="pomodoro-timer"></div>
-            </h3>
 
-            <p>
-                <div>
-                    <input type="text" id="pomodoro-clock-task" placeholder="Enter your break activity!" />
-                </div>
-                <div>
-                    <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!" />
-                </div>
-            </p>
-
+            <div> <br>
+                <input type="text" id="pomodoro-clock-task" placeholder="Enter your homework!..." />
+            </div>
             <div id="pomodoro-clock-actions"> <br>
                 <button id="pomodoro-start">Start</button>
                 <button id="pomodoro-pause">Pause</button>
                 <button id="pomodoro-stop">Stop</button>
-                <button id="pomodoro-day">All Done!</button>
-
+                <button id="pomodoro-day">Done Fo Today!</button>
             </div>
 
             <!-- new -->
@@ -37,51 +30,39 @@
             <div id="pomodoro-clock-title">
                 <br>
                 <span>
-            Changes made here will reflect at the start of the next homework /
-            break session
-                </span>
-            </div>
-
-            <p>
-                <div id="pomodoro-clock-actions1">
-                    <div class="pomodoro-input">
-                        <br>
-                        <label>Work Time</label>
-                        <input name="input-work-time" id="input-work-time" type="number" />
-                    </div>
-                    <div class="pomodoro-input">
-                        <br>
-                        <label>Break Time</label>
-                        <input name="input-break-time" id="input-break-time" type="number" />
-                    </div>
-                </div>
-            </p>
-
-            <div id="pomodoro-info">
-                <h3>Work I've Done </h3>
-                <p>
-                    <ul id="pomodoro-sessions">
-                    </ul>
+                                <p style = "font-family:georgia; font-size:16px;">
+                Changes made here will reflect at the start of the next homework /
+                break session
                 </p>
+              </span>
             </div>
-        </div>
-        <div id='pomodoro-candies'>
-            <button onclick="show_image('https://ae01.alicdn.com/kf/HTB1LU9nQpXXXXaLXVXXq6xXFXXXh/12CM-7CM-Cartoon-Candy-car-stickers-decals-accessories-cover-decorate-automobiles-motorcycle-exterior.jpg', 
-                 100, 
-                 100, 
-                 'Google Logo');">Collect my candy!</button>
-            <p id="p1">Current Candies: 0 </p>
-            <h4>
-                # candies: 1
-            </h4>
-            <img src="https://lh3.googleusercontent.com/proxy/aOwj7EJQXu3fOVmDreEJOii7e00oQ4yX4_pwyUU3X2jerZABE8ViuR0XE5Yba_uWbF5eTm7xPX6wQlFz-f6lGLWv8zEV7wl18x_rkMmylly3RBJAyWSv-OMo_eNfS0L6veI1AqRMSa2GDS9i_NsTAlNCvjFPrKEHneGMcQ" alt="candy" style="width:128px;height:128px;">
-        </div>
-    </body>
-</h3>
-</div>
-<div id="chartContainer" style="height:300px; width: 100%"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-</body>
-
-</html>
+            <div id="pomodoro-clock-actions1">
+                <div class="pomodoro-input">
+                    <br>
+                    <label> 
+                                    <p style = "font-family:georgia; font-size:16px;">Work Time </p> 
+                                    
+                                    <input name="input-work-time" id="input-work-time" type="number" />
+                                </div>
+                                <div class="pomodoro-input">
+                                    <br>
+                                    <label><p style = "font-family:palantino" >Break Time </p> 
+                                    <input name="input-break-time" id="input-break-time" type="number" />
+                                </div>
+                                <div id='pomodoro-candies'>
+                                    <p id="p1">Current Candies: 0 </p>
+                                    <div class="youtube" id="UW6H5dAPuhY" style="width: 500px; height: 281px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pomodoro-info">
+                                <h2>Work I've Done </h2>
+                                <ul id="pomodoro-sessions">
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chartContainer" style="height:300px; width: 100%"></div>
+                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+                    </body>
+    </h3>
