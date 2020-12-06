@@ -86,6 +86,8 @@ const changeIdx = (dayIdx) => {
 
 
 
+
+
 function show_image(src, width, height, alt) {
     var img = document.createElement("img");
     img.src = src;
@@ -96,7 +98,57 @@ function show_image(src, width, height, alt) {
     document.getElementById("p1").innerHTML = `Current Candies:  ${currentCandies} `
         // This next line will just add it to the <body> tag
     document.body.appendChild(img);
+    if (currentCandies === 5) {
+        stopClock()
+        'use strict';
+
+        function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+        r(function() {
+            if (!document.getElementsByClassName) {
+                // IE8 support
+                var getElementsByClassName = function(node, classname) {
+                    var a = [];
+                    var re = new RegExp('(^| )' + classname + '( |$)');
+                    var els = node.getElementsByTagName("*");
+                    for (var i = 0, j = els.length; i < j; i++)
+                        if (re.test(els[i].className)) a.push(els[i]);
+                    return a;
+                }
+                var videos = getElementsByClassName(document.body, "youtube");
+            } else {
+                var videos = document.getElementsByClassName("youtube");
+            }
+
+            var nb_videos = videos.length;
+            for (var i = 0; i < nb_videos; i++) {
+                // Based on the YouTube ID, we can easily find the thumbnail image
+                videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+
+                // Overlay the Play icon to make it look like a video player
+                var play = document.createElement("div");
+                play.setAttribute("class", "play");
+                videos[i].appendChild(play);
+
+                videos[i].onclick = function() {
+                    // Create an iFrame with autoplay set to true
+                    var iframe = document.createElement("iframe");
+                    var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+                    if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+                    iframe.setAttribute("src", iframe_url);
+                    iframe.setAttribute("frameborder", '0');
+
+                    // The height and width of the iFrame should be the same as parent
+                    iframe.style.width = this.style.width;
+                    iframe.style.height = this.style.height;
+
+                    // Replace the YouTube thumbnail with YouTube Player
+                    this.parentNode.replaceChild(iframe, this);
+                }
+            }
+        });
+    }
 }
+
 
 const stepDown = () => {
     if (currentTimeLeftInSession > 0) {
@@ -122,7 +174,9 @@ const stepDown = () => {
             displaySessionLog('Break')
         }
     }
+
     displayCurrentTimeLeftInSession()
+    candyQualification()
 }
 
 
@@ -160,6 +214,15 @@ const displayCurrentTimeLeftInSession = () => {
     if (hours > 0) result += `${hours}:`
     result += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`
     pomodoroTimer.innerText = result.toString()
+}
+const candyQualification = () => {
+    const secondsLeft = currentTimeLeftInSession
+    let result = ''
+    const earn = secondsLeft % 10
+        // add leading zeroes if it's less than 10
+    if (earn === 0) {
+        show_image('https://ae01.alicdn.com/kf/HTB1LU9nQpXXXXaLXVXXq6xXFXXXh/12CM-7CM-Cartoon-Candy-car-stickers-decals-accessories-cover-decorate-automobiles-motorcycle-exterior.jpg', 100, 100, 'pic')
+    }
 }
 
 const stopClock = () => {
