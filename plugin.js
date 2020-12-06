@@ -186,54 +186,6 @@ const stopClock = () => {
 
 pomodoroTimer.innerText = result
 
-<<<<<<< HEAD
-
-//window.onload = function() {
-
-    var chart = new CanvasJS.Chart("chartContainer", {
-        week : getWeek(),
-    
-        animationEnabled: true,
-        theme: "light2",
-        title:{text: "Time Spent Over the Last Week"},
-        axisY:{includeZero: true},
-        legend:{verticalAlign: "bottom", horizontalAlign: "left", dockInsidePlotArea: true},
-        data: [{
-            type: "line",
-            showInLegend: true,
-            name: "Daily Time",
-            markerType: "square",
-            color: "#F08080",
-            dataPoints: [
-                {x: 0, y: week[0]},
-                {x: 1, y: week[1]},
-                {x: 2, y: week[2]},
-                {x: 3, y: week[3]},
-                {x: 4, y: week[4]},
-                {x: 5, y: week[5]},
-                {x: 6, y: week[6]}
-            ]
-        },
-        {
-            type: "line",
-            showInLegend: true,
-            name: "Goal Daily Time",
-            lineDashType: "dash",
-            color: "#46B7FF",
-            dataPoints: [
-                {x: 0, y: 125},
-                {x: 1, y: 125},
-                {x: 2, y: 125},
-                {x: 3, y: 125},
-                {x: 4, y: 125},
-                {x: 5, y: 125},
-                {x: 6, y: 125}
-            ]
-        }]
-    });
-    chart.render();
-    //}
-=======
 window.onload = function() {
 
     var chart = new CanvasJS.Chart("chartContainer", {
@@ -281,4 +233,3 @@ window.onload = function() {
     });
     chart.render();
 }
->>>>>>> 3600c97104bb821385d98b1cf27aa5e08bfefc9c
