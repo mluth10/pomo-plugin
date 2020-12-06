@@ -472,4 +472,3 @@ const stopClock = () => {
 
 
 pomodoroTimer.innerText = result
-
